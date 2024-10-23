@@ -1,0 +1,116 @@
+﻿<Window x:Class="AlienClock.Views.Windows.AlarmSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlienClock.Views.Windows"
+        mc:Ignorable="d"
+        Title="Alarm Settings" 
+        Height="450" 
+        Width="400"
+        WindowStartupLocation="CenterOwner"
+        Background="#1E1E1E">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Enable Alarm -->
+        <CheckBox Grid.Row="0"
+                  Content="Enable Alarm"
+                  IsChecked="{Binding IsEnabled}"
+                  Foreground="#00FF00"
+                  Margin="0,0,0,20"/>
+
+        <!-- Time Settings -->
+        <Grid Grid.Row="1" Margin="0,0,0,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Hour -->
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                       Text="Hour (0-35):"
+                       Foreground="#00FF00"
+                       Margin="0,0,10,5"/>
+            <TextBox Grid.Row="0" Grid.Column="1"
+                     Text="{Binding Hour, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource AlienInputStyle}"
+                     Margin="0,0,0,5"/>
+
+            <!-- Minute -->
+            <TextBlock Grid.Row="1" Grid.Column="0"
+                       Text="Minute (0-89):"
+                       Foreground="#00FF00"
+                       Margin="0,0,10,5"/>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Text="{Binding Minute, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource AlienInputStyle}"
+                     Margin="0,0,0,5"/>
+
+            <!-- Second -->
+            <TextBlock Grid.Row="2" Grid.Column="0"
+                       Text="Second (0-89):"
+                       Foreground="#00FF00"
+                       Margin="0,0,10,5"/>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding Second, UpdateSourceTrigger=PropertyChanged}"
+                     Style="{StaticResource AlienInputStyle}"
+                     Margin="0,0,0,5"/>
+        </Grid>
+
+        <!-- Days Selection -->
+        <GroupBox Grid.Row="2"
+          Header="Active Days"
+          Foreground="#00FF00"
+          BorderBrush="#00FF00">
+            <ListBox Background="Transparent"
+             BorderThickness="0"
+             ItemsSource="{Binding DaySelections}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Day}"
+                         IsChecked="{Binding IsSelected}"
+                         Foreground="#00FF00"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <ContentPresenter/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </GroupBox>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource ClockButtonStyle}"
+                    Margin="0,0,10,0"/>
+            <Button Content="Cancel"
+                    Command="{Binding CancelCommand}"
+                    Style="{StaticResource ClockButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>
