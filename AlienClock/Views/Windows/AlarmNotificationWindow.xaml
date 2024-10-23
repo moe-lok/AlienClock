@@ -1,0 +1,42 @@
+﻿<Window x:Class="AlienClock.Views.Windows.AlarmNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Alarm!"
+        Height="200" 
+        Width="300"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="#1E1E1E"
+        BorderBrush="#00FF00"
+        BorderThickness="1"
+        WindowStartupLocation="CenterScreen"
+        Topmost="True">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="ALARM!"
+                   FontSize="32"
+                   FontWeight="Bold"
+                   Foreground="#00FF00"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"/>
+
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0">
+            <Button Content="Dismiss"
+                    Command="{Binding DismissCommand}"
+                    Style="{StaticResource ClockButtonStyle}"
+                    Margin="5"/>
+            <Button Content="Snooze (5m)"
+                    Command="{Binding SnoozeCommand}"
+                    Style="{StaticResource ClockButtonStyle}"
+                    Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

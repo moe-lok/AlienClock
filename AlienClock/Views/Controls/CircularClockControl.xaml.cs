@@ -100,8 +100,9 @@ namespace AlienClock.Views.Controls
             Canvas.SetTop(CenterPoint, size / 2 - 5);
 
             // Update digital display
-            Canvas.SetLeft(DigitalDisplay, size / 2 - 60);
+            Canvas.SetLeft(DigitalDisplay, size / 2 - 70);
             Canvas.SetTop(DigitalDisplay, size * 0.7);
+
         }
 
         private void DrawClockFace()
@@ -182,10 +183,10 @@ namespace AlienClock.Views.Controls
             double secondAngle = AlienTime.Second * 360.0 / 90;
 
             // Update hour hand
-            UpdateClockHand(HourHand, center, size * 0.3, hourAngle);
+            UpdateClockHand(HourHand, center, size * 0.4, hourAngle);
 
             // Update minute hand
-            UpdateClockHand(MinuteHand, center, size * 0.25, minuteAngle);
+            UpdateClockHand(MinuteHand, center, size * 0.3, minuteAngle);
 
             // Update second hand
             UpdateClockHand(SecondHand, center, size * 0.2, secondAngle);
@@ -205,6 +206,7 @@ namespace AlienClock.Views.Controls
         {
             if (AlienTime == null) return;
 
+            DayText.Text = AlienTime.GetDayName();
             DateText.Text = AlienTime.ToShortDateString();
             TimeText.Text = AlienTime.ToShortTimeString();
         }

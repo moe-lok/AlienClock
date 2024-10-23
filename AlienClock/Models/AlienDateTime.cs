@@ -105,6 +105,11 @@ namespace AlienClock.Models
         public DayOfAlienWeek DayOfWeek => (DayOfAlienWeek)((Day - 1) % 12);
 
         public int DaysInCurrentMonth => DaysInMonth[Month - 1];
+
+        public string GetDayName()
+        {
+            return $"Day {((Day - 1) % 12) + 1}";  // Convert to 1-based day number
+        }
         #endregion
 
         #region Private Methods
@@ -334,7 +339,7 @@ namespace AlienClock.Models
         #region Overrides and Interface Implementations
         public override string ToString()
         {
-            return $"Year {Year}, Month {Month}, Day {Day}, {Hour:D2}:{Minute:D2}:{Second:D2}";
+            return $"{GetDayName()}, Year {Year}, Month {Month}, Day {Day}, {Hour:D2}:{Minute:D2}:{Second:D2}";
         }
 
         public string ToShortTimeString()

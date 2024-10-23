@@ -11,18 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using AlienClock.Services;
-using AlienClock.Services.Interfaces;
 using AlienClock.ViewModels;
+using AlienClock.Services.Interfaces;
 
 namespace AlienClock.Views.Windows
 {
-    public partial class MainWindow : Window
+    public partial class AlarmNotificationWindow : Window
     {
-        public MainWindow(ISettingsService settingsService, ISoundService soundService)
+        public AlarmNotificationWindow(ISoundService soundService, ISettingsService settingsService)
         {
             InitializeComponent();
-            DataContext = new MainViewModel(settingsService, soundService);
+            DataContext = new AlarmNotificationViewModel(soundService, settingsService, Close);
         }
     }
 }
